@@ -16,7 +16,8 @@ app.use(express.json());
 const uri = process.env.ATLAS_URI;
 
 //making the commection to mongodb
-mongoose.connect(uri, { useNewUrlParser: true });
+mongoose.connect(uri, { useNewUrlParser: true }).
+  catch(error => handleError(error));
 
 mongoose.connection.once("open", () => {
   console.log(
